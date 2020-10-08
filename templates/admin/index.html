@@ -1,0 +1,562 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static jazzmin %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block content_title %} {% trans 'Dashboard' %} {% endblock %}
+{% block title %}Dashboard | {{ jazzmin_settings.site_title }} {% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{% url 'admin:index' %}"><i class="fa fa-tachometer-alt"></i> {% trans 'Home' %}</a></li>
+        <li class="breadcrumb-item">{% trans 'Dashboard' %}</li>
+    </ol>
+{% endblock %}
+
+
+{% block content %}
+    {% get_side_menu as dashboard_list %}
+    {% if dashboard_list %}
+        {% widthratio dashboard_list|length 2 1 as middle %}
+    {% endif %}
+
+    <div class="col-lg-9 col-12">
+        <div class="row">
+            <div class="col-md-3 item">
+                <div class="card small-box item-card cards card-block bg-primary">
+                <div class="inner">
+                  <h3 id="student_count"> <sup style="font-size: 20px">$</sup></h3>
+
+                  <p>Students</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-graduation-cap"></i>
+                </div>
+                {% comment %} {% check_perm request.user 'sales.view_sales' as sales_perm %} {% endcomment %}
+                {% comment %} {% if sales_perm %} {% endcomment %}
+                  <a href="users/user" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                  </a>
+                  {% comment %} {% else %}
+                      <a href="" class="small-box-footer">
+                        Has no permission !
+                      </a>
+                {% endif %} {% endcomment %}
+              </div>
+            </div>
+
+            <div class="col-md-3 item">
+                <div class="card small-box item-card cards card-block bg-green">
+                <div class="inner">
+                  <h3 id="teacher_count"> <sup style="font-size: 20px">$</sup></h3>
+
+                  <p>Teachers</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                {% comment %} {% check_perm request.user 'accounts.view_commissions' as comm_perm %} {% endcomment %}
+                {% comment %} {% if comm_perm %} {% endcomment %}
+                  <a href="users/teachers" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                  </a>
+                  {% comment %} {% else %}
+                      <a href="" class="small-box-footer">
+                        Has no permission !
+                      </a>
+                {% endif %} {% endcomment %}
+              </div>
+            </div>
+
+            <div class="col-md-3 item">
+                <div class="card small-box item-card cards card-block bg-yellow">
+                    <div class="inner">
+                      <h3 id="booking_count"></h3>
+
+                      <p>Bookings</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-users"></i>
+                    </div>
+                   {% comment %} {% check_perm request.user 'sales.view_client' as client_perm %}
+                    {% if client_perm %} {% endcomment %}
+                      <a href="booking/booking" class="small-box-footer">
+                        More info <i class="fa fa-arrow-circle-right"></i>
+                      </a>
+                    {% comment %} {% else %}
+                      <a href="" class="small-box-footer">
+                        Has no permission !
+                      </a>
+                    {% endif %} {% endcomment %}
+                  </div>
+            </div>
+            <div class="col-md-3 item">
+                <div class="card small-box item-card cards card-block bg-red">
+                    <div class="inner">
+                      <h3 id="payment_count">0</h3>
+
+                      <p>Payments</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-flag"></i>
+                    </div>
+                   {% comment %} {% check_perm request.user 'sales.view_client' as client_perm %}
+                    {% if client_perm %} {% endcomment %}
+                      <a href="payment/paymenthistory/" class="small-box-footer">
+                        More info <i class="fa fa-arrow-circle-right"></i>
+                      </a>
+                    {% comment %} {% else %}
+                      <a href="" class="small-box-footer">
+                        Has no permission !
+                      </a>
+                    {% endif %} {% endcomment %}
+                  </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+
+                         <div class="collapsible-body">
+                   <div class="row">
+                        <div class="col s6">
+                            <div id="pie_chart" style="width: 100%; height: 330px;"></div>
+                        </div>
+                        <div class="col s6">
+                            <div id="bargraph" style="width: 100%; height: 330px;"></div>
+                        </div>
+                    </div>
+                     <div class="row">
+                            <div class="col s12">
+                              <div id="lineChart" style="width: 100%; height: 400px; margin: 0 auto"></div>
+                            </div>
+                    </div>
+
+                </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--        <div class="row">-->
+<!--          <div class="col-lg-12">-->
+<!--            <div class="card">-->
+<!--              <h3 class="card-title pl-4 pt-2">News & Announcement</h3>-->
+<!--              <div class="card-body">-->
+<!--                -->
+<!--                <div class="list-group">-->
+<!--                  {% comment %} {% news as news_list %}-->
+<!--                  {% for nw in news_list %}-->
+<!--                    <div class="list-group-item list-group-item-action flex-column align-items-start">-->
+<!--                      <div class="d-flex w-100 justify-content-between">-->
+<!--                        <h5 class="mb-1">{{ nw.title|safe }}</h5>-->
+<!--                        <small>{{ nw.updated_at |timesince}}</small>-->
+<!--                      </div>-->
+<!--                      <p class="mb-1">{{ nw.details.html|safe}}</p>-->
+<!--                    </div>-->
+<!--                  {% endfor %} {% endcomment %}-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+    </div>
+    <div class="col-lg-3 col-12">
+        <div id="content-related">
+            <div class="module" id="recent-actions-module">
+                <h3>{% trans 'Recent actions' %}</h3>
+                {% load log %}
+                {% get_admin_log 6 as admin_log for_user user %}
+                {% if not admin_log %}
+                    <p>{% trans 'None available' %}</p>
+                {% else %}
+                    <div class="timeline">
+                        {% for entry in admin_log %}
+                            <div>
+                                {% if entry.is_change %}
+                                    <i class="fas fa-edit bg-blue"></i>
+                                {% elif entry.is_deletion %}
+                                    <i class="fas fa-trash bg-danger"></i>
+                                {% elif entry.is_addition %}
+                                    <i class="fas fa-plus-circle bg-success"></i>
+                                {% endif %}
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i>  {{ entry.action_time|timesince }} ago</span>
+                                    <h3 class="timeline-header no-border">
+                                        {% if entry.is_deletion or not entry.get_admin_url %}
+                                            {{ entry.object_repr }}
+                                        {% else %}
+                                            <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                                        {% endif %}
+
+                                        {% if entry.model %}
+                                            <span class="mini quiet">
+                                                {% filter capfirst %}
+                                                    {{ entry.model }}
+                                                {% endfilter %}
+                                            </span>
+                                        {% endif %}
+                                    </h3>
+                                    {% if not entry.is_deletion %}
+                                        <div class="timeline-body">
+                                            {% if entry.is_addition %}
+                                                {{ entry }}
+                                            {% else %}
+                                                <ul style="list-style: none; padding: 0;">
+                                                    {% action_message_to_list entry as action_message_list %}
+                                                    {% for action_message in action_message_list %}
+                                                        <li>{{ action_message|style_bold_first_word }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div>
+                            <i class="fa fa-clock bg-gray"></i>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extrajs %}
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script type="text/javascript" src="{% static 'js/Chart.bundle.js' %}"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+     <script src="{% static 'js/Chart.min.js' %}"></script>
+     <script src="{% static 'js/chart-utils.js' %}"></script>
+    <script>
+    var getUrl = window.location;
+
+    $.get(getUrl.origin +"/api/dashboard_pie_chart",function(response, code){
+                    if(response.code==200){
+                        Highcharts.chart('pie_chart', {
+                                    chart: {
+                                        plotBackgroundColor: null,
+                                        plotBorderWidth: null,
+                                        plotShadow: false,
+                                        type: 'pie'
+                                    },
+                                    title: {
+                                        text: 'Overall Booking Status'
+                                    },
+                                    tooltip: {
+                                        pointFormat: '<b>{point.percentage:.1f}%</b>'
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            allowPointSelect: true,
+                                            cursor: 'pointer',
+                                            dataLabels: {
+                                                enabled: false
+                                            },
+                                            showInLegend: true
+
+                                        }
+                                    },
+                                    credits: {
+                                        enabled: false
+                                      },
+                                    series: [{
+                                        name: 'Brands',
+                                        colorByPoint: true,
+                                        data:  response.data
+                                    }]
+                                });
+                    }else{
+                            console.log("Something Went Wrong")
+                       }
+
+                    })
+    </script>
+    <script>
+        var getUrl = window.location;
+        $.get(getUrl.origin +"/api/dashboard_bargraph",function(response, code){
+                    if(response.code==200){
+                        months = ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                        dataSets= []
+                        counter = 0
+                        response.data.forEach(function(val){
+                            dataSets.push({name: months[counter], data: [val]})
+                            counter+=1
+                        })
+                        console.log("DataSets", dataSets)
+                        Highcharts.chart('bargraph', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Monthly chart values'
+                            },
+                            xAxis: {
+                                categories: ['Bookings']
+                                // categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            series: dataSets
+                        });
+                    }else{
+                        console.log("Something Went Wrong")
+                   }
+                })
+    </script>
+    <script>
+    var getUrl = window.location;
+
+    $.get(getUrl.origin +"/api/dashboard_line_chart",function(response, code){
+                if(response.code==200){
+                    Highcharts.chart('lineChart', {
+                              chart: {
+                                type: 'areaspline'
+                              },
+                              title: {
+                                text: 'Average Consumption during one week'
+                              },
+                              legend: {
+                                layout: 'vertical',
+                                align: 'left',
+                                verticalAlign: 'top',
+                                x: 150,
+                                y: 100,
+                                floating: true,
+                                borderWidth: 1,
+                                backgroundColor:
+                                  Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+                              },
+                              xAxis: {
+                                categories: [
+                                  'Sunday',
+                                  'Monday',
+                                  'Tuesday',
+                                  'Wednesday',
+                                  'Thursdy',
+                                  'Friday',
+                                  'Saturday'
+                                ],
+
+                                plotBands: [{ // visualize the weekend
+                                  from: 4.5,
+                                  to: 6.5,
+                                  color: 'rgba(68, 170, 213, .2)'
+                                }]
+                              },
+                              yAxis: {
+                                title: {
+                                  text: 'Weeks'
+                                }
+                              },
+                              tooltip: {
+                                shared: true,
+                                valueSuffix: ' units'
+                              },
+                              credits: {
+                                enabled: false
+                              },
+                              plotOptions: {
+                                areaspline: {
+                                  fillOpacity: 0.5
+                                }
+                              },
+                              series:     [ {
+                                name: 'Bookings',
+                                data: response.data
+                              }]
+
+
+                            });
+                }else{
+                        console.log("Something Went Wrong")
+                   }
+                })
+    </script>
+    <script type="text/javascript">
+      
+
+        function generateData(product) {
+          var unit = document.getElementById('unit').value;
+          var data = []
+          $.ajax({
+            type: 'GET',
+            url: '/rest/v1/sales/chart?p='+unit,
+            dataType: 'json', 
+            async: false,
+            success: function(response){
+              response.data.forEach(function(val){
+                if(val.product == product){
+                  data.push({
+                    t: val.timestamp,
+                    y: val.total_sale,
+                    q: val.quant
+                  })
+                }
+              })
+            }
+          })
+          return data
+        }
+        {% comment %} var products = JSON.parse('{% products %}') {% endcomment %}
+        var ctx = document.getElementById('chartBar').getContext('2d');
+        ctx.canvas.width = 1000;
+        ctx.canvas.height = 300;
+
+        var color = Chart.helpers.color;
+        var cfg = {
+          data: {
+            datasets: products.map(function(pr, index){ return {
+              label: pr.name,
+              backgroundColor: color(window.chartColors[index]).alpha(0.5).rgbString(),
+              borderColor: window.chartColors[index],
+              data: generateData(pr.product_code),
+              type: 'line',
+              pointRadius: 0,
+              fill: false,
+              lineTension: 0,
+              borderWidth: 2,
+              code: pr.product_code
+            }})
+          },
+          options: {
+            animation: {
+              duration: 0
+            },
+            scales: {
+              xAxes: [{
+                type: 'time',
+                distribution: 'series',
+                offset: true,
+                ticks: {
+                  major: {
+                    enabled: true,
+                    fontStyle: 'bold'
+                  },
+                  source: 'data',
+                  autoSkip: true,
+                  autoSkipPadding: 75,
+                  maxRotation: 0,
+                  sampleSize: 100
+                },
+                afterBuildTicks: function(scale, ticks) {
+                  var majorUnit = scale._majorUnit;
+                  if(ticks != null){
+                      var firstTick = ticks[0];
+                    var i, ilen, val, tick, currMajor, lastMajor;
+
+                    val = moment(ticks[0].value);
+                    if ((majorUnit === 'minute' && val.second() === 0)
+                        || (majorUnit === 'hour' && val.minute() === 0)
+                        || (majorUnit === 'day' && val.hour() === 9)
+                        || (majorUnit === 'month' && val.date() <= 3 && val.isoWeekday() === 1)
+                        || (majorUnit === 'year' && val.month() === 0)) {
+                      firstTick.major = true;
+                    } else {
+                      firstTick.major = false;
+                    }
+                    lastMajor = val.get(majorUnit);
+
+                    for (i = 1, ilen = ticks.length; i < ilen; i++) {
+                      tick = ticks[i];
+                      val = moment(tick.value);
+                      currMajor = val.get(majorUnit);
+                      tick.major = currMajor !== lastMajor;
+                      lastMajor = currMajor;
+                    }
+                  }
+                  
+                  return ticks;
+                }
+              }],
+              yAxes: [{
+                gridLines: {
+                  drawBorder: false
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Sales'
+                }
+              }]
+            },
+            tooltips: {
+              intersect: false,
+              mode: 'index',
+              callbacks: {
+                label: function(tooltipItem, myData) {
+                  var label = myData.datasets[tooltipItem.datasetIndex].label + " Sale" || '';
+
+                  if (label) {
+                    label += ': ';
+                  }
+                  label += parseFloat(tooltipItem.value).toFixed(2);
+                  label += ", Quantity : "+myData.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].q
+                  return label;
+                }
+              }
+            }
+          }
+        };
+
+        var chart = new Chart(ctx, cfg);
+
+        document.getElementById('update').addEventListener('click', function() {
+          var type = document.getElementById('type').value;
+          chart.config.data.datasets.forEach(function(dataset){
+            dataset.type = type;
+            dataset.data = generateData(dataset.code);
+          })
+          chart.update();
+        });
+        {% comment %} function loadDashboard(){
+            $.ajax({
+              type: 'GET',
+              url: "{% url 'dashboard-data' %}",
+              success: function(respo){
+                if(respo.code == 200){
+                  $('#sales_value').empty().append(respo.data.sales+' <sup style="font-size: 20px">$</sup>')
+                  $('#commission_value').empty().append(respo.data.commissions+ ' <sup style="font-size: 20px">$</sup>')
+                  $('#client_count').text(respo.data.clients)
+                }
+              }
+            })
+        }
+        loadDashboard()
+        setInterval(function(){
+          loadDashboard()
+        }, 50000) {% endcomment %}
+        
+    </script>
+    <script>
+        function loadDashboardCount(){
+        var getUrl = window.location;
+            $.ajax({
+              type: 'GET',
+              url: getUrl.origin + "/api/dashboard_count",
+              success: function(response){
+                if(response.code == 200){
+                  document.getElementById('student_count').innerHTML = response.data.student_count;
+                  document.getElementById('teacher_count').innerHTML = response.data.teacher_count;
+                  document.getElementById('booking_count').innerHTML = response.data.booking_count;
+                }
+              }
+            })
+        }
+        loadDashboardCount()
+    </script> 
+{% endblock %}

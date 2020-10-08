@@ -1,0 +1,48 @@
+{% extends "admin/object_history.html" %}
+{% load i18n %}
+{% load url from simple_history_compat %}
+{% load admin_urls %}
+{% load display_list from simple_history_admin_list %}
+
+
+{% block content %}
+
+  <div class="row col-md-12">
+    <div class="col-12">
+        <div class="card card-primary card-outline">
+            <div class="card-header with-border">
+                <h4 class="card-title">
+                    {% trans 'History' %}
+                </h4>
+                {% if not revert_disabled %}<p>
+                  {% blocktrans %}Choose a date from the list below to revert to a previous version of this object.{% endblocktrans %}</p>{% endif %}
+            </div>
+
+            <div class="card-body">
+                <div id="content-main">
+                    <div class="module">
+
+                        <div class="">
+                            {% if action_list %}
+                              {% display_list %}
+                            {% endif %}
+
+                          <div>
+                              {% if not action_list %}
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header no-border">
+                                        {% trans "This object doesn't have a change history. It probably wasn't added via this admin site." %}
+                                    </h3>
+                                </div>
+                              {% endif %}
+                          </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+:80
+
+root * /home/deploy/musicbackend
+
+file_server /staticfiles/*
+
+reverse_proxy :8000
