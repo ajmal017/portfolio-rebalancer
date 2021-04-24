@@ -15,12 +15,13 @@ class UserAdminForm(forms.ModelForm):
     }
     fields = '__all__'
   def clean(self):
-    cleaned_data = super(UserAdminForm, self).clean()
-    # self.cleaned_data['password'] = make_password(self.cleaned_data['password'])
-    # self.cleaned_data['role'] = "STUDENT"
-    if cleaned_data.get('dob') > datetime.date.today():
-      raise ValidationError("Enter a valid Date of Birth")  
-    if len(cleaned_data.get('phone_number')) < 4 or len(cleaned_data.get('phone_number')) >= 14:
-      raise ValidationError("Phone Number length must be grater than 4 and less than 11 digits")
-    if not str(cleaned_data.get('phone_number')).isnumeric():
-      raise ValidationError("Phone Number must be a numeric value") 
+    # cleaned_data = super(UserAdminForm, self).clean()
+    # # self.cleaned_data['password'] = make_password(self.cleaned_data['password'])
+    # # self.cleaned_data['role'] = "STUDENT"
+    # if cleaned_data.get('dob') > datetime.date.today():
+    #   raise ValidationError("Enter a valid Date of Birth")  
+    # if len(cleaned_data.get('phone_number')) < 4 or len(cleaned_data.get('phone_number')) >= 14:
+    #   raise ValidationError("Phone Number length must be grater than 4 and less than 11 digits")
+    # if not str(cleaned_data.get('phone_number')).isnumeric():
+    #   raise ValidationError("Phone Number must be a numeric value") 
+    pass
