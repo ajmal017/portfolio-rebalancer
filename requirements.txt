@@ -31,8 +31,6 @@ language==0.6
 Languages==1.0.0
 numpy==1.19.5
 packaging==20.9
-pandas==1.1.5
-pandas-market-calendars==1.6.1
 Pillow==8.2.0
 prompt-toolkit==3.0.18
 psycopg2-binary==2.8.5
