@@ -8,7 +8,9 @@ import django
 django.setup()
 
 from django.shortcuts import render
-from portfoliovisualizer.models import Target
+# from portfoliovisualizer.models import Target
+from scraping_events.models import Target
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options

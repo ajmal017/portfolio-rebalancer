@@ -12,6 +12,10 @@ from django.db import models
 
 
 class Target(models.Model):
+	class Meta:
+		verbose_name = "PortFolio Visualizer"
+		verbose_name_plural = "PortFolio Visualizer"
+
 	ticker = models.CharField(max_length=200)
 	target = models.CharField(max_length=200)
 	strategy = models.CharField(max_length=200)
@@ -19,3 +23,4 @@ class Target(models.Model):
 
 	def __str__(self):
 		return self.ticker
+

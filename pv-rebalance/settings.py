@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'languages',
     'jsoneditor',
     'celery',
-    'portfoliovisualizer'
+    'scraping_events',
+    'strategy'
+    # 'portfoliovisualizer'
 
 ]
 
