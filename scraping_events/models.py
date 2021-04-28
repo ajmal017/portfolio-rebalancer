@@ -24,3 +24,9 @@ class Target(models.Model):
 	def __str__(self):
 		return self.ticker
 
+
+class VAAStrategy(Target):
+	class Meta:
+		verbose_name = "VAA Strategy"
+		verbose_name_plural = "VAA Strategy"
+		proxy = True
