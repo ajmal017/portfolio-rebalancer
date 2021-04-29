@@ -9,13 +9,13 @@ class Strategy(models.Model):
 
 	PORTFOLIO_VISUALIZER = 'PORTFOLIO VISUALIZER'
 	VTS = 'VTS'
-	TRENDSEOEXPLORER = 'TRENDSEOEXPLORER'
+	TRENDXPLRER = 'TRENDXPLRER'
 	
 
 	TYPES = (
-		(PORTFOLIO_VISUALIZER, ('Portfolio visualizer')), 
-		(VTS, ('Vts')), 
-		(TRENDSEOEXPLORER, ('TRENDSEOEXPLORER'))
+		(PORTFOLIO_VISUALIZER, ('Portfolio Visualizer')), 
+		(VTS, ('VTS')), 
+		(TRENDXPLRER, ('TrendXpLrer'))
 	)
 	name = models.CharField(verbose_name="Strategy Name", max_length=300)
 	# source = models.CharField(verbose_name="Data Source", max_length=300)
