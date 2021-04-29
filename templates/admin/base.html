@@ -320,11 +320,11 @@
         <footer class="main-footer {{ jazzmin_ui.footer_classes }}">
             <div class="float-right d-none d-sm-inline">
                 <!-- <b>{% trans 'Jazzmin version' %}</b> {% get_jazzmin_version %} -->
-                <b>{% trans 'PV-Rebalance Portal Ltd' %}</b>
+                <!-- <b>{% trans 'PV-Rebalance Portal Ltd' %}</b> -->
             </div>
-            {% autoescape off %}
+            <!-- {% autoescape off %}
                 <strong>{% trans 'Copyright' %} &copy; {% now 'Y' %} {{ jazzmin_settings.copyright }}.</strong> {% trans 'All rights reserved.' %}
-            {% endautoescape %}
+            {% endautoescape %} -->
         </footer>
         {% if jazzmin_settings.show_ui_builder %}
             {% include 'jazzmin/includes/ui_builder_panel.html' %}
