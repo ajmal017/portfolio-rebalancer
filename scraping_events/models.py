@@ -30,3 +30,9 @@ class VAAStrategy(Target):
 		verbose_name = "VAA Strategy"
 		verbose_name_plural = "VAA Strategy"
 		proxy = True
+
+class TrendXplrer(Target):
+	class Meta:
+		verbose_name = "TrendXplrer"
+		verbose_name_plural = "TrendXplrer"
+		proxy = True

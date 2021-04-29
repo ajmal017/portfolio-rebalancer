@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Target, VAAStrategy
+from .models import Target, VAAStrategy, TrendXplrer
 
 # Register your models here.
 class TargetAdmin(admin.ModelAdmin):
@@ -30,3 +30,16 @@ class VAAStrategyAdmin(admin.ModelAdmin):
 
 
 admin.site.register(VAAStrategy, VAAStrategyAdmin)
+
+
+
+class TrendXplrerAdmin(admin.ModelAdmin):
+	list_display = ('strategy', 'ticker', 'target', 'date')
+	def has_add_permission(self, request, obj=None):
+		return False
+	def get_queryset(self, request):
+		qs = super(TrendXplrerAdmin, self).get_queryset(request)
+		return Target.objects.filter(strategy='VAA Str')
+
+
+admin.site.register(TrendXplrer, TrendXplrerAdmin)
