@@ -157,17 +157,17 @@
                         <a href="{% url 'admin:logout' %}" class="dropdown-item">
                             <i class="fas fa-users mr-2"></i> {% trans 'Log out' %}
                         </a>
-                        {% get_user_menu user request.current_app|default:"admin" as user_menu %}
+                        <!-- {% get_user_menu user request.current_app|default:"admin" as user_menu %}
                         {% for link in user_menu %}
                             <div class="dropdown-divider"></div>
                             <a href="{{ link.url }}" class="dropdown-item" {% if link.new_window %}target="_blank"{% endif %}>
                                 <i class="{{ link.icon }} mr-2"></i> {% trans link.name %}
                             </a>
-                        {% endfor %}
-                        <div class="dropdown-divider"></div>
+                        {% endfor %} -->
+                        <!-- <div class="dropdown-divider"></div>
                         {% if perms|can_view_self %}
                             <a href="{% jazzy_admin_url request.user request.current_app|default:"admin" %}" class="dropdown-item dropdown-footer">{% trans 'See Profile' %}</a>
-                        {% endif %}
+                        {% endif %} -->
                     </div>
                 </li>
             </ul>
