@@ -13,8 +13,8 @@ from django.db import models
 
 class Target(models.Model):
 	class Meta:
-		verbose_name = "PortFolio Visualizer"
-		verbose_name_plural = "PortFolio Visualizer"
+		verbose_name = "Portfolio Visualizer"
+		verbose_name_plural = "Portfolio Visualizer"
 
 	ticker = models.CharField(max_length=200)
 	target = models.CharField(max_length=200)
