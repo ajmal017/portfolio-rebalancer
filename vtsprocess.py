@@ -11,7 +11,7 @@ from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 import datetime
 import logging
-import time, pdb
+import time
 import re
 # from rebal.eoauth import OauthSession
 # from rebal.orders import getPositions, getPrices, getPreviewIDs, sendOrders, getOrderDetails
@@ -93,7 +93,6 @@ import re
 #     return s.get_data()
 
 def getEmailOrders():
-    # pdb.set_trace()
     mail = imaplib.IMAP4_SSL('imap.gmail.com')
     mail.login('brlind999@gmail.com', 'WatermelonSugar999')
     mail.select("inbox") 
