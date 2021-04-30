@@ -33,6 +33,6 @@ class VAAStrategy(Target):
 
 class VTSEmail(Target):
 	class Meta:
-		verbose_name = "VTSEmail"
-		verbose_name_plural = "VTSEmail"
+		verbose_name = "VTS Email"
+		verbose_name_plural = "VTS Email"
 		proxy = True
