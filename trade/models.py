@@ -5,8 +5,8 @@ from strategy.models import Strategy
 class Trade(models.Model):
 	
 	class Meta:
-		verbose_name = "Trade"
-		verbose_name_plural = "Trades"
+		verbose_name = "Completed Trades"
+		verbose_name_plural = "Completed Trades"
 	
 	strategy = models.ForeignKey(Strategy, blank=False, null=False, on_delete=models.CASCADE)
 	trade_fund = models.IntegerField(verbose_name="Total Trade fund")
