@@ -19,6 +19,7 @@ class Strategy(models.Model):
 	)
 	name = models.CharField(verbose_name="Strategy Name", max_length=300)
 	# source = models.CharField(verbose_name="Data Source", max_length=300)
+	display_name = models.CharField(verbose_name="Display Name", max_length=200, blank=False, null=True)
 	source =  models.CharField(verbose_name=('Data Source'), max_length=100, blank=False, choices=TYPES, null=True)
 	funds = models.CharField(verbose_name="Allocated Funds", max_length=300)
 	created = models.DateTimeField(auto_now_add=True)
