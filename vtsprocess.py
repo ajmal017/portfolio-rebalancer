@@ -195,7 +195,6 @@ def getEmailOrders():
     msg = email.message_from_bytes(raw_email)
     # msg = msg.get_payload(decode=True)
     # while msg.is_multipart():
-    #     pdb.set_trace()
     #     msg = msg.get_payload(0)
     content = msg.get_payload(1)
     content = content.get_payload(decode=True)
@@ -205,27 +204,21 @@ def getEmailOrders():
     # html = urlopen(content)
     bs = BeautifulSoup(content, 'html.parser')
     # table = bs.find(text="Total Portfolio Solution").find_parent("table")
-    # pdb.set_trace()
     table = bs.find_all('table')[3]
     # table1 = table.find_all('table')[0]
     # table2 = table1.find_all('table')
     # print(table)
-    # pdb.set_trace()
     print('*************************')
     trade_portfolio_path = ''
-    # pdb.set_trace()
     p = 0
     found = False
     for row in table.find_all("tr")[1:]:
-        # pdb.set_trace()
         # i += 1
         if found:
             if p >= 1:
                 print("congrats")
-                # pdb.set_trace()
                 for img in row.findAll('img'):
                     print(img.get('src'))
-                    # pdb.set_trace()
                     trade_portfolio_path = img.get('src')
                     found = False
             else:
@@ -234,13 +227,11 @@ def getEmailOrders():
         # print(row)
         for subtable in row.find_all('table'):
             # if found:
-            #     pdb.set_trace()
             # print([cell.get_text() for cell in subtable.find_all("td")])
             for cell in subtable.find_all("td"):
                 print(cell.get_text())
                 match = fuzz.ratio(cell.get_text(), 'Total Portfolio Solution trades') 
                 if match > 90:
-                    # pdb.set_trace()
                     # if i == 1:
                     found = True
                     # else:
@@ -249,13 +240,11 @@ def getEmailOrders():
         #     print(q)
         # print(row)
         # row.find_all("table")
-        # pdb.set_trace()
         # get_table = row.find_all('table')
         # if get_table:
         #     for tab in get_table:
         #         pass
         # print(row)
-    # pdb.set_trace()
     print('*************************')
     urllib.request.urlretrieve(trade_portfolio_path, "local-filename.png")
 
@@ -296,7 +285,6 @@ def getEmailOrders():
                     found = True
 
             
-    # pdb.set_trace()
     # bototextract.py
     # images = bs.find_all('img')
     # all_images = []
@@ -308,7 +296,6 @@ def getEmailOrders():
     # # img = Image.open(all_images[10])
     # urllib.request.urlretrieve(all_images[10], "sample.png")
     # detect_text(all_images[10])
-    # pdb.set_trace()
 
     #####
 
