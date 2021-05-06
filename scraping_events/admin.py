@@ -39,7 +39,7 @@ class VTSEmailAdmin(admin.ModelAdmin):
 		return False
 	def get_queryset(self, request):
 		qs = super(VTSEmailAdmin, self).get_queryset(request)
-		return Target.objects.filter(strategy='VAA Str')
+		return Target.objects.filter(strategy='VTSEmail')
 
 
 admin.site.register(VTSEmail, VTSEmailAdmin)
