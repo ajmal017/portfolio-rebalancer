@@ -7,7 +7,7 @@ class TargetAdmin(admin.ModelAdmin):
 
 	def get_queryset(self, request):
 		qs = super(TargetAdmin, self).get_queryset(request)
-		return qs.exclude(Q(strategy='VAA Strategy') Q(strategy="VTSEmail"))
+		return qs.exclude(Q(strategy='VAA Strategy')| Q(strategy="VTSEmail"))
 
 
 
