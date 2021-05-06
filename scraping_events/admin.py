@@ -1,13 +1,13 @@
 from django.contrib import admin
 from .models import Target, VAAStrategy, VTSEmail
-
+from django.db.models import Q
 # Register your models here.
 class TargetAdmin(admin.ModelAdmin):
 	list_display = ('strategy', 'ticker', 'target',  'date')
 
 	def get_queryset(self, request):
 		qs = super(TargetAdmin, self).get_queryset(request)
-		return qs.exclude(strategy='VAA Strategy')
+		return qs.exclude(Q(strategy='VAA Strategy') Q(strategy="VTSEmail"))
 
 
 
