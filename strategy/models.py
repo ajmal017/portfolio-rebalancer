@@ -38,6 +38,6 @@ class Strategy(models.Model):
 
 	def clean(self, *args, **kwargs):
 		name = str(self.name)
-		if name and Strategy.objects.filter(name=name).exists():
+		if name and Strategy.objects.filter(name=name).exists().exclude(id=self.id):
 			raise ValidationError('Strategy name already exists')
 		super(Strategy, self).clean(*args, **kwargs)
