@@ -9,14 +9,14 @@ class Strategy(models.Model):
 		verbose_name_plural = "Strategies"
 
 	PORTFOLIO_VISUALIZER = 'PORTFOLIO VISUALIZER'
-	VTS = 'VTS'
-	TRENDXPLRER = 'TRENDXPLRER'
+	VTS_EMAIL = 'VTS EMAIL'
+	VAA_STRATEGY = 'VAA STRATEGY'
 	
 
 	TYPES = (
 		(PORTFOLIO_VISUALIZER, ('Portfolio Visualizer')), 
-		(VTS, ('VTS')), 
-		(TRENDXPLRER, ('TrendXpLrer'))
+		(VTS_EMAIL, ('VTS Email')), 
+		(VAA_STRATEGY, ('VAA Strategy'))
 	)
 	SCRAPEFREQUENCY = (
         ('Daily','Daily'),
