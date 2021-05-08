@@ -170,37 +170,45 @@ from scraping_events.models import Target, VAAStrategy
 import openpyxl
 from pathlib import Path 
 
-xlsx_file = 'rag.xlsx'
-wb_obj = openpyxl.load_workbook(xlsx_file, data_only=True) 
+class VAA_Strategy():
+	def __init__(self):
+		print("Constructor call")
 
-# Read the active sheet:
-sheet = wb_obj.active
+	def get_vaa_strategy(self):
 
+		xlsx_file = 'rag.xlsx'
+		wb_obj = openpyxl.load_workbook(xlsx_file, data_only=True) 
 
-result = []
-ticker = "AQ2"
-target = "AQ97"
-for i in range(1, 8):
-	print("-----")
-	print(ticker)
-	print(target)
-	print('-----')
-	if sheet[target].value == 1:
-		result.append({'ticker': sheet[ticker].value, 'target': sheet[target].value  * 100, 'strategy': 'VAA Strategy'})
-	else:
-		result.append({'ticker': sheet[ticker].value, 'target': sheet[target].value  * 100 + 0.01 if sheet[target].value != 0 else 0, 'strategy': 'VAA Strategy'})
-	get_tick = ticker[1]
-	get_tar = target[1]
-	ticker = ticker.replace(ticker[1], chr(ord(get_tick) + 1)) 
-	target = target.replace(target[1], chr(ord(get_tar) + 1))
-
-print(result)
+		# Read the active sheet:
+		sheet = wb_obj.active
 
 
-for target in result:
-	VAAStrategy.objects.create(**target)
+		result = []
+		ticker = "AQ2"
+		target = "AQ97"
+		for i in range(1, 8):
+			print("-----")
+			print(ticker)
+			print(target)
+			print('-----')
+			if sheet[target].value == 1:
+				result.append({'ticker': sheet[ticker].value, 'target': sheet[target].value  * 100, 'strategy': 'VAA Strategy'})
+			else:
+				result.append({'ticker': sheet[ticker].value, 'target': sheet[target].value  * 100 + 0.01 if sheet[target].value != 0 else 0, 'strategy': 'VAA Strategy'})
+			get_tick = ticker[1]
+			get_tar = target[1]
+			ticker = ticker.replace(ticker[1], chr(ord(get_tick) + 1)) 
+			target = target.replace(target[1], chr(ord(get_tar) + 1))
+
+		print(result)
 
 
+		for target in result:
+			VAAStrategy.objects.create(**target)
+
+
+zx = VAA_Strategy()
+zx.get_vaa_strategy()
 # for i in 
 
 # AQ  97
