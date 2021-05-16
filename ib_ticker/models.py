@@ -6,7 +6,7 @@ class IBTicker(models.Model):
 	class Meta:
 		verbose_name = "IB Tikcker"
 		verbose_name_plural = "IB Tickers"
-	ticker = models.OneToOneField(Target, on_delete=models.CASCADE, blank=False, null=True)
+	ticker = models.CharField(max_length=100)
 	con_id = models.IntegerField()
 	created_at = models.DateTimeField(auto_now_add=True)
 
