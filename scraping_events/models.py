@@ -19,6 +19,7 @@ class Target(models.Model):
 	ticker = models.CharField(max_length=200)
 	target = models.CharField(max_length=200)
 	strategy = models.CharField(max_length=200)
+	last_fetched_price = models.CharField(max_length=100, blank=True, null=True)
 	date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
@@ -36,3 +37,6 @@ class VTSEmail(Target):
 		verbose_name = "VTS Email"
 		verbose_name_plural = "VTS Email"
 		proxy = True
+
+class Employee(models.Model):
+        ename = models.CharField(max_length=100)
