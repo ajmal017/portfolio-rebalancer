@@ -19,7 +19,9 @@ class Target(models.Model):
 	ticker = models.CharField(max_length=200)
 	target = models.CharField(max_length=200)
 	strategy = models.CharField(max_length=200)
+	# con_id = models.CharField(max_length=100, blank=True)
 	last_fetched_price = models.CharField(max_length=100, blank=True, null=True)
+	is_tradeable = models.BooleanField(default=False)
 	date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
