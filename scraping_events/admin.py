@@ -47,7 +47,7 @@ admin.site.register(Target, TargetAdmin)
 
 
 class VAAStrategyAdmin(admin.ModelAdmin):
-	list_display = ('strategy', 'ticker', 'get_target', 'date')
+	list_display = ('strategy', 'ticker', 'get_target','last_fetched_price', 'date')
 
 	def get_target(self, obj):
 		return str(obj.target) + '%'
@@ -63,7 +63,7 @@ admin.site.register(VAAStrategy, VAAStrategyAdmin)
 
 
 class VTSEmailAdmin(admin.ModelAdmin):
-	list_display = ('strategy', 'ticker', 'target', 'date')
+	list_display = ('strategy', 'ticker', 'target','last_fetched_price', 'date')
 	def has_add_permission(self, request, obj=None):
 		return False
 	def get_queryset(self, request):
