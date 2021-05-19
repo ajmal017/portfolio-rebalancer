@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.db.models import Count
 # Register your models here.
 class TargetAdmin(admin.ModelAdmin):
-    list_display = ('strategy', 'ticker','target', 'last_fetched_price', 'is_tradeable','date')
+    list_display = ('strategy', 'ticker','target', 'last_fetched_price', 'is_tradeable','current_position', 'updated_position', 'date')
     # change_list_template = 'admin/sale_summary_change_list.html'
     def get_queryset(self, request):
         qs = super(TargetAdmin, self).get_queryset(request)
