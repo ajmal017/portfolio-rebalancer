@@ -36,7 +36,7 @@ class Strategy(models.Model):
 # TODO: UI dropdown account_number, Add FK as trading_account_id
 	def __str__(self):
 		if self.account_number:
-			return self.account_number
+			return self.account_number.trading_account.account_number
 		else:
 			return ""
 
