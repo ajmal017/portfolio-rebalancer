@@ -47,10 +47,11 @@ admin.site.register(Target, TargetAdmin)
 
 
 class VAAStrategyAdmin(admin.ModelAdmin):
-	list_display = ('strategy', 'ticker', 'get_target', 'date')
-
 	def get_target(self, obj):
 		return str(obj.target) + '%'
+	list_display = ('strategy', 'ticker', 'target', 'is_tradeable', 'date')
+
+	
 	def get_queryset(self, request):
 		qs = super(VAAStrategyAdmin, self).get_queryset(request)
 		return Target.objects.filter(strategy='VAA Strategy')
