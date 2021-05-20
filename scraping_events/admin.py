@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Target, VAAStrategy, VTSEmail
 from django.db.models import Q
 from django.db.models import Count
-from .forms import *
+# from .forms import *
 
 from django.utils.safestring import mark_safe
 
