@@ -2,13 +2,53 @@ from django.contrib import admin
 from .models import Target, VAAStrategy, VTSEmail
 from django.db.models import Q
 from django.db.models import Count
+from .forms import *
+
+from django.utils.safestring import mark_safe
+
 # Register your models here.
 class TargetAdmin(admin.ModelAdmin):
+    # form = MyModelForm
     list_display = ('strategy', 'ticker','target', 'is_tradeable', 'date')
     # change_list_template = 'admin/sale_summary_change_list.html'
     def get_queryset(self, request):
         qs = super(TargetAdmin, self).get_queryset(request)
         return qs.exclude(Q(strategy='VAA Strategy')| Q(strategy="VTSEmail"))
+
+    fieldsets = (
+        ("", {
+        'classes': ('wide',),
+        'fields': ('account_number', 'ticker', 'target','is_tradeable', 'date',)}
+        ),
+        # ('Account', {'fields': ('Info','pay_now',) })
+    )
+    def account_number(self, obj):
+        # Strategy.objects.filter()
+        try:
+            strategy = Strategy.objects.filter(display_name=obj.strategy)
+            if strategy.exists():
+
+                return strategy.first().account_number.trading_account.account_number
+            return ''
+        except Exception as ex:
+        	print(str(ex))
+        	return ''
+    # def get_readonly_fields(self, request, obj=None):
+    #     if obj: # editing an existing object
+
+    #         return self.readonly_fields + ('field1', 'field2')
+    #     return self.readonly_fields
+
+    # def get_object(self, request, object_id, mno):
+    #     obj = super(TargetAdmin, self).get_object(request, object_id)
+    #     # for key, value in request.GET.items():
+    #         # print(key, value)
+    #         # strategy_id_id
+    #     setattr(obj, 'strategy_id_id', '52')
+    #     return obj
+
+    def has_change_permission(self, request, obj=None):
+        return False
 
     # def changelist_view(self, request, extra_context=None):
     #     response = super().changelist_view(
