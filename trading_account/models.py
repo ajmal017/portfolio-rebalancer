@@ -22,6 +22,9 @@ class TradingAccount(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return self.platform_name
+		try:
+			return self.account_name + self.account_number
+		except:
+			return ""
 
 
