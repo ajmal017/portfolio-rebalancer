@@ -16,3 +16,7 @@ class Trade(models.Model):
 	positions = models.IntegerField(blank=True, null=False)
 	timestamp = models.DateTimeField(auto_now_add=True)
 	# TODO: Add positions
+
+
+	def __str__(self):
+		return self.trading_account.account_number
