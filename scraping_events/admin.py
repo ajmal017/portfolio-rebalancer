@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.db.models import Count
 # Register your models here.
 class TargetAdmin(admin.ModelAdmin):
-    list_display = ('strategy', 'ticker','target', 'last_fetched_price', 'is_tradeable','current_position', 'updated_position', 'date')
+    list_display = ('strategy', 'ticker','target', 'is_tradeable', 'date')
     # change_list_template = 'admin/sale_summary_change_list.html'
     def get_queryset(self, request):
         qs = super(TargetAdmin, self).get_queryset(request)
@@ -47,7 +47,7 @@ admin.site.register(Target, TargetAdmin)
 
 
 class VAAStrategyAdmin(admin.ModelAdmin):
-	list_display = ('strategy', 'ticker', 'get_target','last_fetched_price', 'date')
+	list_display = ('strategy', 'ticker', 'get_target', 'date')
 
 	def get_target(self, obj):
 		return str(obj.target) + '%'
@@ -63,7 +63,7 @@ admin.site.register(VAAStrategy, VAAStrategyAdmin)
 
 
 class VTSEmailAdmin(admin.ModelAdmin):
-	list_display = ('strategy', 'ticker', 'target','last_fetched_price', 'date')
+	list_display = ('strategy', 'ticker', 'target', 'date')
 	def has_add_permission(self, request, obj=None):
 		return False
 	def get_queryset(self, request):

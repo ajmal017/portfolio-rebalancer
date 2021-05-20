@@ -8,7 +8,7 @@ class TradeAdmin(admin.ModelAdmin):
 	def trading_account(self, obj):
 		return str(obj.trading_account.platform_name)
 
-	list_display = ('strategy', 'trade_fund', 'trading_account', 'timestamp')
+	list_display = ('strategy', 'trading_account', 'timestamp')
 
 	
 

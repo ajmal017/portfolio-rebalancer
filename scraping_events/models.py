@@ -1,5 +1,5 @@
 from django.db import models
-
+from strategy.models import Strategy
 # Create your models here.
 # class Targets(Base):
 #     __tablename__ = 'targets'
@@ -11,18 +11,24 @@ from django.db import models
 #     date = Column(Date)
 
 
+
+
+# TODO: Remove delete and edit power
+
 class Target(models.Model):
 	class Meta:
 		verbose_name = "Portfolio Visualizer"
 		verbose_name_plural = "Portfolio Visualizer"
 
+	strategy_id = models.ForeignKey(Strategy, blank=True, null=True, on_delete=models.CASCADE)
+
 	ticker = models.CharField(max_length=200)
-	target = models.CharField(max_length=200)
-	strategy = models.CharField(max_length=200)
+	target = models.CharField(max_length=200) # TODO: percentage_allocation
+	strategy = models.CharField(max_length=200) # TODO: Dropdown from Strategies table as FK
 	# con_id = models.CharField(max_length=100, blank=True)
-	last_fetched_price = models.CharField(max_length=100, blank=True, null=True)
-	current_position = models.CharField(max_length=100, blank=True, null=True)
-	updated_position = models.CharField(max_length=100, blank=True, null=True)
+	# last_fetched_price = models.CharField(max_length=100, blank=True, null=True)
+	# current_position = models.CharField(max_length=100, blank=True, null=True)
+	# updated_position = models.CharField(max_length=100, blank=True, null=True)
 	is_tradeable = models.BooleanField(default=False)
 	date = models.DateTimeField(auto_now_add=True)
 
