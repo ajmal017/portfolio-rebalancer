@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Target, VAAStrategy, VTSEmail
+from strategy.models import Strategy
 from django.db.models import Q
 from django.db.models import Count
 # from .forms import *
