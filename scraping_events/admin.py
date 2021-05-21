@@ -21,7 +21,7 @@ class TargetAdmin(admin.ModelAdmin):
     fieldsets = (
         ("", {
         'classes': ('wide',),
-        'fields': ('account_number', 'ticker', 'target','is_tradeable', 'date',)}
+        'fields': ('account_number','strategy', 'ticker', 'target','is_tradeable', 'date',)}
         ),
         # ('Account', {'fields': ('Info','pay_now',) })
     )
@@ -104,7 +104,7 @@ class VAAStrategyAdmin(admin.ModelAdmin):
     fieldsets = (
         ("", {
         'classes': ('wide',),
-        'fields': ('account_number', 'ticker', 'target','is_tradeable', 'date',)}
+        'fields': ('account_number','strategy', 'ticker', 'target','is_tradeable', 'date',)}
         ),
         # ('Account', {'fields': ('Info','pay_now',) })
     )
@@ -140,7 +140,7 @@ class VTSEmailAdmin(admin.ModelAdmin):
     fieldsets = (
         ("", {
         'classes': ('wide',),
-        'fields': ('account_number', 'ticker', 'target','is_tradeable', 'date',)}
+        'fields': ('account_number','strategy', 'ticker', 'target','is_tradeable', 'date',)}
         ),
         # ('Account', {'fields': ('Info','pay_now',) })
     )
