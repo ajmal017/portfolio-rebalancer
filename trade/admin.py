@@ -4,7 +4,8 @@ from .models import Trade
 class TradeAdmin(admin.ModelAdmin):
     def strategy(self, obj):
         return str(obj.strategy_id.name)
-
+    def has_add_permission(self, request, obj=None):
+        return False
     def trading_account(self, obj):
         return str(obj.trading_account.platform_name)
     def has_delete_permission(self, request, obj=None):
