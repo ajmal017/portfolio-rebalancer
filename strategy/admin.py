@@ -4,7 +4,7 @@ from .models import Strategy
 class StrategyAdmin(admin.ModelAdmin):
 	def funds(self, obj):
 		return '$ ' + str(obj.funds)
-	list_display = ('name', 'scrape_frequency', 'is_active', 'display_name', 'source', 'funds', 'created')
+	list_display = ('name', 'scrape_frequency', 'display_name', 'source', 'funds', 'is_active','created')
 	
 
 
