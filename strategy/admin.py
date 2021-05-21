@@ -2,9 +2,10 @@ from django.contrib import admin
 from .models import Strategy
 # Register your models here.
 class StrategyAdmin(admin.ModelAdmin):
-	list_display = ('name', 'scrape_frequency', 'is_active', 'display_name', 'source', 'get_funds', 'created')
 	def get_funds(self, obj):
 		return '$ ' + str(obj.funds)
+	list_display = ('name', 'scrape_frequency', 'is_active', 'display_name', 'source', 'funds', 'created')
+	
 
 
 
