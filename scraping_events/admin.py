@@ -12,6 +12,8 @@ class TargetAdmin(admin.ModelAdmin):
     # form = MyModelForm
     list_display = ('strategy', 'ticker','target', 'is_tradeable', 'date')
     # change_list_template = 'admin/sale_summary_change_list.html'
+    def has_delete_permission(self, request, obj=None):
+        return False
     def get_queryset(self, request):
         qs = super(TargetAdmin, self).get_queryset(request)
         return qs.exclude(Q(strategy='VAA Strategy')| Q(strategy="VTSEmail"))
@@ -23,6 +25,7 @@ class TargetAdmin(admin.ModelAdmin):
         ),
         # ('Account', {'fields': ('Info','pay_now',) })
     )
+
     def account_number(self, obj):
         # Strategy.objects.filter()
         try:
@@ -32,8 +35,8 @@ class TargetAdmin(admin.ModelAdmin):
                 return strategy.first().account_number.trading_account.account_number
             return ''
         except Exception as ex:
-        	print(str(ex))
-        	return ''
+            print(str(ex))
+            return ''
     # def get_readonly_fields(self, request, obj=None):
     #     if obj: # editing an existing object
 
@@ -88,14 +91,36 @@ admin.site.register(Target, TargetAdmin)
 
 
 class VAAStrategyAdmin(admin.ModelAdmin):
-	def get_target(self, obj):
-		return str(obj.target) + '%'
-	list_display = ('strategy', 'ticker', 'target', 'is_tradeable', 'date')
+    def get_target(self, obj):
+        return str(obj.target) + '%'
+    list_display = ('strategy', 'ticker', 'target', 'is_tradeable', 'date')
 
-	
-	def get_queryset(self, request):
-		qs = super(VAAStrategyAdmin, self).get_queryset(request)
-		return Target.objects.filter(strategy='VAA Strategy')
+    
+    def get_queryset(self, request):
+        qs = super(VAAStrategyAdmin, self).get_queryset(request)
+        return Target.objects.filter(strategy='VAA Strategy')
+    def has_delete_permission(self, request, obj=None):
+        return False
+    fieldsets = (
+        ("", {
+        'classes': ('wide',),
+        'fields': ('account_number', 'ticker', 'target','is_tradeable', 'date',)}
+        ),
+        # ('Account', {'fields': ('Info','pay_now',) })
+    )
+    def account_number(self, obj):
+        # Strategy.objects.filter()
+        try:
+            strategy = Strategy.objects.filter(display_name=obj.strategy)
+            if strategy.exists():
+
+                return strategy.first().account_number.trading_account.account_number
+            return ''
+        except Exception as ex:
+            print(str(ex))
+            return ''
+    def has_change_permission(self, request, obj=None):
+        return False
 		
 
 
@@ -105,12 +130,36 @@ admin.site.register(VAAStrategy, VAAStrategyAdmin)
 
 
 class VTSEmailAdmin(admin.ModelAdmin):
-	list_display = ('strategy', 'ticker', 'target', 'is_tradeable', 'date')
-	def has_add_permission(self, request, obj=None):
-		return False
-	def get_queryset(self, request):
-		qs = super(VTSEmailAdmin, self).get_queryset(request)
-		return Target.objects.filter(strategy='VTSEmail')
+    list_display = ('strategy', 'ticker', 'target', 'is_tradeable', 'date')
+    def has_add_permission(self, request, obj=None):
+        return False
+    def get_queryset(self, request):
+        qs = super(VTSEmailAdmin, self).get_queryset(request)
+        return Target.objects.filter(strategy='VTSEmail')
+
+    fieldsets = (
+        ("", {
+        'classes': ('wide',),
+        'fields': ('account_number', 'ticker', 'target','is_tradeable', 'date',)}
+        ),
+        # ('Account', {'fields': ('Info','pay_now',) })
+    )
+    def account_number(self, obj):
+        # Strategy.objects.filter()
+        try:
+            strategy = Strategy.objects.filter(display_name=obj.strategy)
+            if strategy.exists():
+
+                return strategy.first().account_number.trading_account.account_number
+            return ''
+        except Exception as ex:
+            print(str(ex))
+            return ''
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(VTSEmail, VTSEmailAdmin)
