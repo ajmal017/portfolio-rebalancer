@@ -17,7 +17,8 @@ class TargetAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         qs = super(TargetAdmin, self).get_queryset(request)
         return qs.exclude(Q(strategy='VAA Strategy')| Q(strategy="VTSEmail"))
-
+    def has_add_permission(self, request, obj=None):
+        return False
     fieldsets = (
         ("", {
         'classes': ('wide',),
@@ -99,6 +100,8 @@ class VAAStrategyAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         qs = super(VAAStrategyAdmin, self).get_queryset(request)
         return Target.objects.filter(strategy='VAA Strategy').exclude(target='0')
+    def has_add_permission(self, request, obj=None):
+        return False
     def has_delete_permission(self, request, obj=None):
         return False
     fieldsets = (
