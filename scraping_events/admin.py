@@ -98,7 +98,7 @@ class VAAStrategyAdmin(admin.ModelAdmin):
     
     def get_queryset(self, request):
         qs = super(VAAStrategyAdmin, self).get_queryset(request)
-        return Target.objects.filter(strategy='VAA Strategy')
+        return Target.objects.filter(strategy='VAA Strategy').exclude(target='0')
     def has_delete_permission(self, request, obj=None):
         return False
     fieldsets = (
