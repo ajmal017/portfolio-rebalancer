@@ -3,7 +3,6 @@ from .models import Target, VAAStrategy, VTSEmail
 from strategy.models import Strategy
 from django.db.models import Q
 from django.db.models import Count
-import pdb
 # from .forms import *
 
 from django.utils.safestring import mark_safe
@@ -31,11 +30,11 @@ class TargetAdmin(admin.ModelAdmin):
     def account_number(self, obj):
         # Strategy.objects.filter()
         try:
-            pdb.set_trace()
-            strategy = Strategy.objects.filter(display_name=obj.strategy)
+            # strategy = Strategy.objects.filter(display_name=obj.strategy)
+            strategy = Strategy.objects.filter(display_name=obj.strategy, source=Strategy.PORTFOLIO_VISUALIZER)
             if strategy.exists():
 
-                return strategy.first().account_number.trading_account.account_number
+                return strategy.first().account_number.account_number
             return ''
         except Exception as ex:
             print(str(ex))
