@@ -133,7 +133,10 @@ admin.site.register(VAAStrategy, VAAStrategyAdmin)
 
 
 class VTSEmailAdmin(admin.ModelAdmin):
-    list_display = ('strategy', 'ticker', 'target', 'is_tradeable', 'date')
+    list_display = ('strategy', 'ticker', 'get_target', 'is_tradeable', 'date')
+    def get_target(self, obj):
+        return str(obj.target) + '%'
+    get_target.short_description = 'Target'
     def has_add_permission(self, request, obj=None):
         return False
     def get_queryset(self, request):
