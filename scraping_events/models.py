@@ -30,6 +30,7 @@ class Target(models.Model):
 	# current_position = models.CharField(max_length=100, blank=True, null=True)
 	# updated_position = models.CharField(max_length=100, blank=True, null=True)
 	is_tradeable = models.BooleanField(default=False)
+	scrape_date = models.CharField(max_length=100)
 	date = models.DateTimeField(auto_now_add=True)
 
 	
