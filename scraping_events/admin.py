@@ -156,7 +156,7 @@ class VTSEmailAdmin(admin.ModelAdmin):
         return False
     def get_queryset(self, request):
         qs = super(VTSEmailAdmin, self).get_queryset(request)
-        return Target.objects.filter(strategy='VTSEmail')
+        return Target.objects.filter(strategy=Strategy.VTS_EMAIL)
 
     fieldsets = (
         ("", {
@@ -168,7 +168,6 @@ class VTSEmailAdmin(admin.ModelAdmin):
     def account_number(self, obj):
         # Strategy.objects.filter()
         try:
-            pdb.set_trace()
             # strategy = Strategy.objects.filter(display_name=obj.strategy)
             strategy = Strategy.objects.filter(display_name=obj.strategy, source=Strategy.VTS_EMAIL)
             if strategy.exists():
