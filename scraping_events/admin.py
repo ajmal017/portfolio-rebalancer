@@ -29,15 +29,23 @@ class TargetAdmin(admin.ModelAdmin):
 
     def account_number(self, obj):
         # Strategy.objects.filter()
-        try:
-            strategy = Strategy.objects.filter(display_name=obj.strategy)
-            if strategy.exists():
+        # try:
+        #     strategy = Strategy.objects.filter(display_name=obj.strategy)
+        #     if strategy.exists():
 
-                return strategy.first().account_number.trading_account.account_number
-            return ''
-        except Exception as ex:
-            print(str(ex))
-            return ''
+        #         return strategy.first().account_number.trading_account.account_number
+        #     return ''
+        # except Exception as ex:
+        #     print(str(ex))
+        #     return ''
+        try:
+        	return obj.strategy.account_number
+        except:
+        	return ""
+
+
+
+
     # def get_readonly_fields(self, request, obj=None):
     #     if obj: # editing an existing object
 
@@ -113,15 +121,19 @@ class VAAStrategyAdmin(admin.ModelAdmin):
     )
     def account_number(self, obj):
         # Strategy.objects.filter()
-        try:
-            strategy = Strategy.objects.filter(display_name=obj.strategy)
-            if strategy.exists():
+        # try:
+        #     strategy = Strategy.objects.filter(display_name=obj.strategy)
+        #     if strategy.exists():
 
-                return strategy.first().account_number.trading_account.account_number
-            return ''
-        except Exception as ex:
-            print(str(ex))
-            return ''
+        #         return strategy.first().account_number.trading_account.account_number
+        #     return ''
+        # except Exception as ex:
+        #     print(str(ex))
+        #     return ''
+        try:
+        	return obj.strategy.account_number
+        except:
+        	return ""
     def has_change_permission(self, request, obj=None):
         return False
 		
@@ -152,15 +164,19 @@ class VTSEmailAdmin(admin.ModelAdmin):
     )
     def account_number(self, obj):
         # Strategy.objects.filter()
-        try:
-            strategy = Strategy.objects.filter(display_name=obj.strategy)
-            if strategy.exists():
+        # try:
+        #     strategy = Strategy.objects.filter(display_name=obj.strategy)
+        #     if strategy.exists():
 
-                return strategy.first().account_number.trading_account.account_number
-            return ''
-        except Exception as ex:
-            print(str(ex))
-            return ''
+        #         return strategy.first().account_number.trading_account.account_number
+        #     return ''
+        # except Exception as ex:
+        #     print(str(ex))
+        #     return ''
+        try:
+        	return obj.strategy.account_number
+        except:
+        	return ""
     def has_change_permission(self, request, obj=None):
         return False
 
