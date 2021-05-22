@@ -156,7 +156,7 @@ class VTSEmailAdmin(admin.ModelAdmin):
         return False
     def get_queryset(self, request):
         qs = super(VTSEmailAdmin, self).get_queryset(request)
-        return Target.objects.filter(strategy=Strategy.VTS_EMAIL)
+        return Target.objects.filter(strategy='VTS Email')
 
     fieldsets = (
         ("", {
