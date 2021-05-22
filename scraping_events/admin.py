@@ -39,7 +39,7 @@ class TargetAdmin(admin.ModelAdmin):
         #     print(str(ex))
         #     return ''
         try:
-        	return obj.strategy.account_number
+        	return obj.strategy_id.account_number
         except:
         	return ""
 
@@ -131,7 +131,7 @@ class VAAStrategyAdmin(admin.ModelAdmin):
         #     print(str(ex))
         #     return ''
         try:
-        	return obj.strategy.account_number
+        	return obj.strategy_id.account_number
         except:
         	return ""
     def has_change_permission(self, request, obj=None):
@@ -174,7 +174,7 @@ class VTSEmailAdmin(admin.ModelAdmin):
         #     print(str(ex))
         #     return ''
         try:
-        	return obj.strategy.account_number
+        	return obj.strategy_id.account_number
         except:
         	return ""
     def has_change_permission(self, request, obj=None):
