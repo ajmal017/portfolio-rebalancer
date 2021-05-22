@@ -4,7 +4,7 @@ from strategy.models import Strategy
 from django.db.models import Q
 from django.db.models import Count
 # from .forms import *
-import pdb
+
 from django.utils.safestring import mark_safe
 
 # Register your models here.
@@ -39,7 +39,6 @@ class TargetAdmin(admin.ModelAdmin):
         #     print(str(ex))
         #     return ''
         try:
-        	pdb.set_trace()
         	return obj.strategy_id.account_number
         except:
         	return ""
