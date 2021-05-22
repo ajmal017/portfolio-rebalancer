@@ -36,9 +36,12 @@ class Strategy(models.Model):
 	updated = models.DateTimeField(auto_now=True)	
 # TODO: UI dropdown account_number, Add FK as trading_account_id
 	def __str__(self):
-		if self.account_number:
-			return self.account_number.account_number
-		else:
+		try:
+			if self.account_number:
+				return self.account_number.account_number
+			else:
+				return ""
+		except:
 			return ""
 
 	def clean(self, *args, **kwargs):
