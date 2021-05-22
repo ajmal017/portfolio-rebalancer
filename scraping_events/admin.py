@@ -11,7 +11,7 @@ from django.utils.safestring import mark_safe
 # Register your models here.
 class TargetAdmin(admin.ModelAdmin):
     # form = MyModelForm
-    list_display = ('strategy', 'ticker','target', 'is_tradeable', 'date')
+    list_display = ('strategy', 'ticker','target', 'is_tradeable','scrape_date', 'date')
     # change_list_template = 'admin/sale_summary_change_list.html'
     def has_delete_permission(self, request, obj=None):
         return False
