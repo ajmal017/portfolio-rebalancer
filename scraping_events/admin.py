@@ -31,7 +31,7 @@ class TargetAdmin(admin.ModelAdmin):
     def account_number(self, obj):
         # Strategy.objects.filter()
         try:
-        	pdb.set_trace()
+            pdb.set_trace()
             strategy = Strategy.objects.filter(display_name=obj.strategy)
             if strategy.exists():
 
