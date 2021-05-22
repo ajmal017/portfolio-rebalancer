@@ -32,7 +32,7 @@ class Strategy(models.Model):
 	display_name = models.CharField(verbose_name="Display Name", max_length=200, blank=False, null=True)
 	source =  models.CharField(verbose_name=('Data Source'), max_length=100, blank=False, choices=TYPES, null=True)
 	funds = models.CharField(verbose_name="Allocated Funds", max_length=300)
-	created = models.DateTimeField(auto_now_add=True)
+	created = models.DateField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)	
 # TODO: UI dropdown account_number, Add FK as trading_account_id
 	def __str__(self):
