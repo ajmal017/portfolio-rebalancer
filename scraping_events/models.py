@@ -30,8 +30,10 @@ class Target(models.Model):
 	# current_position = models.CharField(max_length=100, blank=True, null=True)
 	# updated_position = models.CharField(max_length=100, blank=True, null=True)
 	is_tradeable = models.BooleanField(default=False)
-	date = models.DateTimeField(auto_now_add=True)
+	date = models.DateTimeField()
+	created = models.DateTimeField(auto_now_add=True)
 
+	
 	def __str__(self):
 		return self.ticker
 
