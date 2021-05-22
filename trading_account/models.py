@@ -23,7 +23,7 @@ class TradingAccount(models.Model):
 
 	def __str__(self):
 		try:
-			return self.account_name + '[' + self.account_number + ']'
+			return self.account_name + '-' '[' + self.account_number + ']'
 		except:
 			return ""
 
