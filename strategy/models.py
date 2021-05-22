@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from trade.models import Trade
+from trading_account.models import TradingAccount
 # Create your models here.
 class Strategy(models.Model):
 	
@@ -24,7 +25,7 @@ class Strategy(models.Model):
         ('Monthly','Monthly')
     )
 	name = models.CharField(verbose_name="Strategy Name", max_length=300)
-	account_number = models.ForeignKey(Trade, blank=True, null=True, on_delete=models.CASCADE)
+	account_number = models.ForeignKey(TradingAccount, blank=True, null=True, on_delete=models.CASCADE)
 	# source = models.CharField(verbose_name="Data Source", max_length=300)
 	scrape_frequency = models.CharField(verbose_name=('Scrape Frequency'), max_length=50, default='Daily', choices=SCRAPEFREQUENCY)
 	is_active = models.BooleanField(default=False)
@@ -32,7 +33,7 @@ class Strategy(models.Model):
 	source =  models.CharField(verbose_name=('Data Source'), max_length=100, blank=False, choices=TYPES, null=True)
 	funds = models.CharField(verbose_name="Allocated Funds", max_length=300)
 	created = models.DateTimeField(auto_now_add=True)
-	updated = models.DateTimeField(auto_now=True)
+	updated = models.DateTimeField(auto_now=True)	
 # TODO: UI dropdown account_number, Add FK as trading_account_id
 	def __str__(self):
 		if self.account_number:
