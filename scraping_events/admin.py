@@ -123,10 +123,11 @@ class VAAStrategyAdmin(admin.ModelAdmin):
     def account_number(self, obj):
         # Strategy.objects.filter()
         try:
-            strategy = Strategy.objects.filter(display_name=obj.strategy)
+            # strategy = Strategy.objects.filter(display_name=obj.strategy)
+            strategy = Strategy.objects.filter(display_name=obj.strategy, source=Strategy.VAA_STRATEGY)
             if strategy.exists():
 
-                return strategy.first().account_number.trading_account.account_number
+                return strategy.first().account_number.account_number
             return ''
         except Exception as ex:
             print(str(ex))
@@ -166,10 +167,11 @@ class VTSEmailAdmin(admin.ModelAdmin):
     def account_number(self, obj):
         # Strategy.objects.filter()
         try:
-            strategy = Strategy.objects.filter(display_name=obj.strategy)
+            # strategy = Strategy.objects.filter(display_name=obj.strategy)
+            strategy = Strategy.objects.filter(display_name=obj.strategy, source=Strategy.VTS_EMAIL)
             if strategy.exists():
 
-                return strategy.first().account_number.trading_account.account_number
+                return strategy.first().account_number.account_number
             return ''
         except Exception as ex:
             print(str(ex))
