@@ -15,7 +15,7 @@ class TradeAdmin(admin.ModelAdmin):
     fieldsets = (
         ("", {
         'classes': ('wide',),
-        'fields': ('strategy_id', 'trading_account', 'positions','timestamp')}
+        'fields': ('strategy_id', 'trading_account', 'ticker', 'positions','timestamp')}
         ),
         # ('Account', {'fields': ('Info','pay_now',) })
     )

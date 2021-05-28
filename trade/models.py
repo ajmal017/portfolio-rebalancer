@@ -10,7 +10,7 @@ class Trade(models.Model):
 		verbose_name_plural = "Completed Trades"
 	# TOD): rename strategy to strategy_id
 	strategy_id = models.ForeignKey(to="strategy.Strategy", blank=False, null=False, on_delete=models.CASCADE)
-
+	ticker = models.CharField(max_length=100, blank=False, null=False)
 	# trade_fund = models.IntegerField(verbose_name="Total Trade fund")
 	trading_account = models.ForeignKey(TradingAccount, blank=False, null=False, on_delete=models.CASCADE)
 	positions = models.IntegerField(blank=True, null=False)
