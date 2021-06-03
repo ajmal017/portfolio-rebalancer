@@ -375,7 +375,30 @@
 <script src="{% static "jazzmin/js/ui-builder.js" %}"></script>
 {% endif %}
 
-{% block extrajs %}{% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+
+    function checkforText(requiredText) {
+            let found = false;
+  
+            $(".nav li").each((id, elem) => {
+                // console.log(elem.innerText);
+                if (elem.innerText.trim() === "Vaa strategy sheets") {
+                    found = true;
+                    console.log(elem);
+                    elem.style.display = 'none';
+                }
+            });
+  
+            return found;
+        }
+
+        found = checkforText('Vaa strategy sheets');
+        
+
+
+</script>
+{% endblock %}
 
 </body>
 </html>

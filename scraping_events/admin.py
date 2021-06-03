@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Target, VAAStrategy, VTSEmail
+from .models import Target, VAAStrategy, VTSEmail, VAAStrategySheet
 from strategy.models import Strategy
 from django.db.models import Q
 from django.db.models import Count
@@ -102,7 +102,7 @@ admin.site.register(Target, TargetAdmin)
 
 
 class VAAStrategyAdmin(admin.ModelAdmin):
-    
+    change_list_template = "admin/vaa_strategy_list.html"
     list_display = ('strategy', 'ticker', 'get_target', 'is_tradeable', 'date')
     def get_target(self, obj):
         return str(obj.target) + '%'
@@ -189,3 +189,19 @@ class VTSEmailAdmin(admin.ModelAdmin):
 
 
 admin.site.register(VTSEmail, VTSEmailAdmin)
+
+
+
+
+
+
+
+
+class VAAStrategySheetAdmin(admin.ModelAdmin):
+    
+    list_display = ('sheet_link', 'created_at', 'updated_at')
+    
+
+
+
+admin.site.register(VAAStrategySheet, VAAStrategySheetAdmin)

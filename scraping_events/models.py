@@ -50,5 +50,11 @@ class VTSEmail(Target):
 		verbose_name_plural = "VTS Email"
 		proxy = True
 
+class VAAStrategySheet(models.Model):
+	sheet_link = models.URLField(max_length=200, help_text="Make sure sheet shared on your mail id")
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
 class Employee(models.Model):
         ename = models.CharField(max_length=100)
+        text = models.TextField(blank=True)
