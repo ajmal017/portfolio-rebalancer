@@ -10,7 +10,7 @@ class TradeAdmin(admin.ModelAdmin):
         return str(obj.trading_account.platform_name)
     def has_delete_permission(self, request, obj=None):
         return False
-    list_display = ('strategy_id', 'trading_account','positions', 'timestamp')
+    list_display = ('strategy_id', 'trading_account','ticker', 'positions', 'timestamp')
 
     fieldsets = (
         ("", {
