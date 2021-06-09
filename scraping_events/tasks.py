@@ -1,0 +1,13 @@
+from django.conf import settings
+from modules.email_templates.models import EmailTemplate
+from django.core.mail import EmailMessage
+
+
+def send_report_email(userId, message):
+	subject = 'Portfolio Visualizer'
+	from_email = settings.MAIL_FROM
+	try:
+		message = EmailMessage(subject, message, settings.MAIL_FROM, 'er.mohittambi@gmail.com')
+		message.send()
+	except Exception as ex:
+		print("Failed to send", ex)
