@@ -1,9 +1,8 @@
 from django.conf import settings
-from modules.email_templates.models import EmailTemplate
 from django.core.mail import EmailMessage
 
 
-def send_report_email(userId, message):
+def send_report_email(, message):
 	subject = 'Portfolio Visualizer'
 	from_email = settings.MAIL_FROM
 	try:
